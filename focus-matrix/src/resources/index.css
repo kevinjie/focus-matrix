@@ -1,0 +1,84 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h3 {
+  display: inline-block;
+  margin: 0;
+  color: #fff;
+  padding: 5px 2px;
+}
+
+button {
+  appearance: none;
+  background: none;
+  border: none;
+}
+
+button i {
+  color: white;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#container #matrix-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+#panel {
+  width: 200px;
+  height: 100%;
+  margin-left: 10px;
+  border: 1px solid #f4f4f4;
+}
+
+.matrix {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 50%;
+  height: 50%;
+}
+
+.matrix .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.add-task {
+  cursor: pointer;
+}
+
+.matrix .main {
+  height: 200px;
+  background-color: aquamarine;
+  overflow: auto;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
