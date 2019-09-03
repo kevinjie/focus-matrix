@@ -18,6 +18,7 @@ button {
   appearance: none;
   background: none;
   border: none;
+  outline: none;
 }
 
 button i {
@@ -36,7 +37,7 @@ ul {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #container #matrix-wrapper {
@@ -47,11 +48,35 @@ ul {
   align-items: stretch;
 }
 
+#matrix-wrapper.onlyMatrix {
+  width: 100%;
+}
+
 #panel {
-  width: 200px;
+  width: 25%;
   height: 100%;
-  margin-left: 10px;
+  margin: 10px;
+  padding: 10px;
   border: 1px solid #f4f4f4;
+}
+
+#panel .header {
+  text-align: right;
+}
+
+.form-item label {
+  display: block;
+  margin: 5px 0;
+}
+
+.form-item .ant-calendar-picker {
+  width: 100%;
+}
+
+.form-item button {
+  display: block;
+  width: 100%;
+  margin: 10px auto;
 }
 
 .matrix {
@@ -62,23 +87,54 @@ ul {
 }
 
 .matrix .header {
+  position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
 }
 
+.count-task {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border-radius: 50%;
+  background: rgb(246, 243, 243);
+  text-align: center;
+  vertical-align: middle;
+  color: rgb(122, 119, 119);
+}
+
 .add-task {
   cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%)
 }
 
 .matrix .main {
+  padding: 5px 0;
   height: 200px;
   background-color: aquamarine;
   overflow: auto;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
+}
+
+.matrix .main .task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+}
+
+.task input {
+  margin-right: 10px;
 }
 

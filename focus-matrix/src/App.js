@@ -13,7 +13,8 @@ class App extends Component {
     this.state = {
       allTask: {},
       currentTask: {},
-      showTaskPanel: true 
+      showTaskPanel: false,
+      onlyMatrix: 'onlyMatrix' 
     }
   }
 
@@ -21,10 +22,59 @@ class App extends Component {
     this._loadStorageData()
   }
 
-  onAddTask() {
+  onAddTask(title) {
     this.setState({
-      showTaskPanel: !this.state.showTaskPanel
+      currentTask: {...this.state.currentTask, section: title},
+      onlyMatrix: '',
+      showTaskPanel: true
     })
+  }
+
+  onEditTask(task, index) {
+    this.setState({
+      currentIndex: index,
+      currentTask: {...this.state.currentTask, ...task},
+      onlyMatrix: '',
+      showTaskPanel: true
+    })
+  }
+
+  onHandleChecked(task, index, checked = false) {
+    this.setState({
+      currentIndex: index,
+      currentTask: {...this.state.currentTask, ...task}
+    })
+  }
+
+  onClosePanel() {
+    this.setState({
+      onlyMatrix: 'onlyMatrix',
+      showTaskPanel: false
+    })
+  }
+
+  onSubmitTask(data) {
+    const { section } = data
+    const { allTask, currentIndex } = this.state
+    if (!allTask[section]) {
+      allTask[section] = []
+    }
+    if (allTask[section][currentIndex]) {
+      allTask[section].splice(currentIndex, 1, data)
+    } else {
+      allTask[section].unshift(data)
+    }
+    
+    this.setState({ 
+      allTask,
+      onlyMatrix: 'onlyMatrix',
+      showTaskPanel: false
+    })
+    this._saveStorageData(allTask)
+  }
+
+  _saveStorageData(allTask) {
+    window.localStorage.setItem('tasks-data', JSON.stringify(allTask))
   }
 
   _loadStorageData() {
@@ -37,11 +87,11 @@ class App extends Component {
   }
 
   render() {
-    const { allTask } = this.state
+    const { allTask, onlyMatrix } = this.state
     return (
       <ConfigProvider locale={zhCN}>
         <div id="container">
-          <div id="matrix-wrapper">
+          <div id="matrix-wrapper" className={onlyMatrix}>
             {
               Matrix.matrix.map((area, i) => (
                 <Area 
@@ -50,6 +100,8 @@ class App extends Component {
                   mstyle={Matrix.bgcMap[area]}
                   tasks={allTask[area] ? allTask[area] : []}
                   onAddTask={this.onAddTask.bind(this)}
+                  onEditTask={this.onEditTask.bind(this)}
+                  onHandleChecked={this.onHandleChecked.bind(this)}
                   key={i} />
               ))
             }
@@ -57,7 +109,10 @@ class App extends Component {
           {
             !this.state.showTaskPanel ? null
             : (
-              <Panel {...this.state.currentTask}/>
+              <Panel 
+                onClosePanel={this.onClosePanel.bind(this)}
+                currentTask={this.state.currentTask} 
+                onSubmitTask={this.onSubmitTask.bind(this)}/>
             )
           }
         </div>

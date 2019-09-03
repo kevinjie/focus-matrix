@@ -22,7 +22,8 @@ const bgcMap = {
 const remindDays = [
     '1 day before',
     '2 day before',
-    '3 day before'
+    '3 day before',
+    'never'
 ]
 
 export default {
