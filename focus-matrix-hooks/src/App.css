@@ -60,6 +60,10 @@ ul {
   border: 1px solid #f4f4f4;
 }
 
+#panel.onlyMatrix {
+  display: none;
+}
+
 #panel .header {
   text-align: right;
 }

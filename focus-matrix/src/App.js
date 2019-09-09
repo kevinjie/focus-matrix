@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale/zh_CN';
 import Area from './views/area'
 import Panel from './views/panel'
 import Matrix from './constants/base'
@@ -89,7 +88,7 @@ class App extends Component {
   render() {
     const { allTask, onlyMatrix } = this.state
     return (
-      <ConfigProvider locale={zhCN}>
+      <ConfigProvider>
         <div id="container">
           <div id="matrix-wrapper" className={onlyMatrix}>
             {
